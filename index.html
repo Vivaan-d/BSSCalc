@@ -118,7 +118,19 @@
   </div>
   <script src="homepagehandler.js"></script>
   <script>
+
+
+
+
+
+
+// Oh Crap Tahjae's Code Is Entirely Copied
+
+
     // main.js
+
+
+
 let installPrompt = null;
 const installButton = document.querySelector("#install");
 
@@ -129,6 +141,10 @@ window.addEventListener("beforeinstallprompt", (event) => {
 });
 
 // PWA install button
+
+
+
+
 installButton.addEventListener("click", async () => {
   if (!installPrompt) {
     return;
@@ -143,6 +159,9 @@ function disableInAppInstallPrompt() {
   installButton.setAttribute("hidden", "");
 }
 // service worker
+
+
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js")
     .then(registration => console.log("Service Worker registered"))
