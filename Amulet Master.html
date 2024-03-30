@@ -24,18 +24,9 @@
   <header>
   </header>
     <main>
-        
-  <h3>Insert your crit chance here</h3>
-  <input id="critchance">
-  <h3>Insert your crit power here</h3>
-    <input id="critpower">
-  <h3>Insert your supercrit chance here</h3>
-  <input id="supercritchance">
-  <h3>Insert your supercrit power here</h3>
-    <input id="supercritpower">
-  <h3>Insert the % of crit chance you want to see how much pollen it increases</h3>
-  <input id="critpercentin" value="1">
-  Remove any crit/supercrit chance or power from amulets if you want to switch a amulet
+      
+      
+    <button onclick="calcCompare()">Calculate</button>
     <button onclick="calc()">Calculate</button>
 
     <p>Getting <span id="critpercent">[Enter the fields above]</span>% critical chance gives you <span id="opi">[Enter the fields above]</span>% more pollen from crits</p>
@@ -45,8 +36,37 @@
   <script src="jslib.js"></script>
   <script src="homepagehandler.js"></script>
   <script>
-  function calc() {
-
+    function calc() {
+    var amuletRedPoints;
+    var amuletWhitePoints;
+    var amuletBluePoints;
+  
+    // Critical calculations
+    var cc=$.n(/*critchance*/);
+    var ccAm/*Crit chance+ Amulet*/=($.n(/*critchance*/)+$.n(/*Amulet critchance*/));
+    var cp=$.n(/*critpower*/);
+    var cpAm/*Crit power+ Amulet*/=($.n(/*critpower*/)+$.n(/*Amulet critpower*/));
+    var sc=$.n(/*supercritchance*/);
+    var sp=$.n(/*supercritpower*/);
+    var cpi=$.n(/*insert amulet's crit chance here*/);
+    console.log(cc)
+    console.log(cp)
+    console.log(sc)
+    console.log(sp)
+    console.log(cpi)
+    var fc=$.pd(cc,cp)
+    var fs=$.pd(cc,$.pd(sc,((sp/100)*cp)))
+    var fcs=$.pd((cc+1),cp)-fc
+    var fss=$.pd((cc+1),$.pd(sc,((sp/100)*cp)))-fs //i love this line
+    $.st(/*element*/null, /*response*/null);
+    }
+  function calcCompare() {
+  var amuletRedPoints;
+  var amuletWhitePoints;
+  var amuletBluePoints;
+  var amuletRedPoints2;
+  var amuletWhitePoints2;
+  var amuletBluePoints2;
 
   // Critical calculations
   var cc=$.n(/*critchance*/);
@@ -67,6 +87,8 @@
   var fss=$.pd((cc+1),$.pd(sc,((sp/100)*cp)))-fs //i love this line
   $.st(/*element*/null, /*response*/null);
   }
+
+
   // end
   // expected accuracy 100%
   // estimates tell me it's correct
