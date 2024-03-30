@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precise Tools: Amulet Master (AM)</title>
+    <link rel="stylesheet" href="yes.css">
+    <link rel="icon" type="image/x-icon" href="precisetools.png">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:title" content="Precise Tools: Amulet Master">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Amulet Master: Instantly find out stats about your amulet and know if you should Keep or Replace">
+    <meta property="og:image" content="https://precisetools.netlify.app/precisetools.png"> <!-- Replace with your actual image URL -->
+    <!-- Twitter Meta Tags (similar to Open Graph) -->
+    <meta name="twitter:title" content="Precise Tools: Amulet Master">
+    <meta name="twitter:description" content="Amulet Master: Instantly find out stats about your amulet and know if you should Keep or Replace">
+    <meta name="twitter:image" content="https://precisetools.netlify.app/precisetools.png"> <!-- Replace with your actual image URL -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Other necessary meta tags -->
+    <meta name="description" content="Precise Tools: Amulet Master. Instantly find out stats about your amulet and know if you should Keep or Replace">
+</head>
+<body>
+<div class="container">
+  <header>
+  </header>
+    <main>
+        
+  <h3>Insert your crit chance here</h3>
+  <input id="critchance">
+  <h3>Insert your crit power here</h3>
+    <input id="critpower">
+  <h3>Insert your supercrit chance here</h3>
+  <input id="supercritchance">
+  <h3>Insert your supercrit power here</h3>
+    <input id="supercritpower">
+  <h3>Insert the % of crit chance you want to see how much pollen it increases</h3>
+  <input id="critpercentin" value="1">
+  Remove any crit/supercrit chance or power from amulets if you want to switch a amulet
+    <button onclick="calc()">Calculate</button>
+
+    <p>Getting <span id="critpercent">[Enter the fields above]</span>% critical chance gives you <span id="opi">[Enter the fields above]</span>% more pollen from crits</p>
+    <p>You get <span id="all">[Enter the fields above]</span> of your pollen from your current criticals and supercrits (combined)</p>
+    <p>Benefit from Crits only: <span id="co">[Enter the fields above]</span>. Benefits from SuperCrits only<span id="sco">[Enter the fields above]</span></p>
+  </div>
+  <script src="jslib.js"></script>
+  <script src="homepagehandler.js"></script>
+  <script>
+  function calc() {
+
+
+  // Critical calculations
+  var cc=$.n(/*critchance*/);
+  var ccAm/*Crit chance+ Amulet*/=($.n(/*critchance*/)+$.n(/*Amulet critchance*/));
+  var cp=$.n(/*critpower*/);
+  var cpAm/*Crit power+ Amulet*/=($.n(/*critpower*/)+$.n(/*Amulet critpower*/));
+  var sc=$.n(/*supercritchance*/);
+  var sp=$.n(/*supercritpower*/);
+  var cpi=$.n(/*insert amulet's crit chance here*/);
+  console.log(cc)
+  console.log(cp)
+  console.log(sc)
+  console.log(sp)
+  console.log(cpi)
+  var fc=$.pd(cc,cp)
+  var fs=$.pd(cc,$.pd(sc,((sp/100)*cp)))
+  var fcs=$.pd((cc+1),cp)-fc
+  var fss=$.pd((cc+1),$.pd(sc,((sp/100)*cp)))-fs //i love this line
+  $.st(/*element*/null, /*response*/null);
+  }
+  // end
+  // expected accuracy 100%
+  // estimates tell me it's correct
+  
+  </script>
+  <script src="homepagehandler.js"></script>
+</body>
+</html>
