@@ -24,75 +24,117 @@
   <header>
   </header>
     <main>
+      <h2><b>Enter your current amulet's stats. Enter 0 if you don't have it.</b></h2><br><br>
+      <b>Pollen</b>
+      <input id="pollen">
+      <b>Red Pollen</b>
+      <input id="redpollen">
+      <b>White Pollen</b>
+      <input id="whitepollen">
+      <b>Blue Pollen</b>
+      <input id="bluepollen">
+      <b>Pollen From Bees</b>
+      <input id="pollenfrombees">
+      <b>Instant Conversion</b>
+      <input id="instantconversion">
+      <b>Convert Rate</b>
+      <input id="convertrate">
+      <b>Bee Ability Rate</b>
+      <input id="beeabilityrate">
+      <b>Critical Chance</b>
+      <input id="critchance">
+      <b>Hive Color</b>
+      <select name="hivecolor" id="hivecolor">
+        <option value="red">Red</option>
+        <option value="white">White</option>
+        <option value="blue">Blue</option>
+        <option value="amogus">ඞ🤔🗿🤔❌🚫⛔</option>
+      </select>
+      <b>Passive 1</b>
+      <select name="passive1" id="passive1">
+        <option value="scorch">Scorching Star</option>
+        <option value="gummy">Gummy Star</option>
+        <option value="pop">Pop Star</option>
+        <option value="scorch">Guiding Star</option>
+        <option value="saw">Star Saw</option>
+        <option value="gummy">Star Shower</option>
+      </select>
+      <b>Passive 2</b>
+      <select name="passive2" id="passive2">
+        <option value="scorch">Guiding Star</option>
+        <option value="saw">Star Saw</option>
+        <option value="gummy">Star Shower</option>
+        <option value="none">None</option>
+      </select>
+      <b>Is this for an alt account?</b>
+      <select name="altacc" id="altacc">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
       
-      
-    <button onclick="calcCompare()">Calculate</button>
     <button onclick="calc()">Calculate</button>
-
-    <p>Getting <span id="critpercent">[Enter the fields above]</span>% critical chance gives you <span id="opi">[Enter the fields above]</span>% more pollen from crits</p>
-    <p>You get <span id="all">[Enter the fields above]</span> of your pollen from your current criticals and supercrits (combined)</p>
-    <p>Benefit from Crits only: <span id="co">[Enter the fields above]</span>. Benefits from SuperCrits only<span id="sco">[Enter the fields above]</span></p>
   </div>
   <script src="jslib.js"></script>
   <script src="homepagehandler.js"></script>
   <script>
     function calc() {
+    var pollen1 = $.va("pollen");
+    var whitepollen1 = $.va("whitepollen");
+    var redpollen1 = $.va("redpollen");
+    var bluepollen1 = $.va("bluepollen");
+    var pollenfrombees1 = $.va("pollenfrombees");
+    var instantconversion1 = $.va("instantconversion");
+    var convertrate1 = $.va("convertrate");
+    var beeabilityrate1 = $.va("beeabilityrate");
+    var critchance1 = $.va("critchance");
+    var hivecolor = $.va("hivecolor")
+    if (hivecolor == "amogus"){
+      document.write("ඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞ")
+    }
+    if (hivecolor == "red"){
+      alert("pro + respect 😎")
+    }
+    console.log(pollen1)
+    console.log(redpollen1)
+    console.log(whitepollen1)
+    console.log(bluepollen1)
+    console.log(pollenfrombees1)
+    console.log(instantconversion1)
+    console.log(convertrate1)
+    console.log(beeabilityrate1)
+    console.log(critchance1)
+    console.log(hivecolor)
+
+    if ($.n(pollen1)==NaN||$.n(whitepollen1)==NaN||$.n(redpollen1)==NaN||$.n(bluepollen1)==NaN||$.n(pollenfrombees1)==NaN||$.n(instantconversion1)==NaN||$.n(convertrate1)==NaN||$.n(beeabilityrate1)==NaN||$.n(critchance1)==NaN){
+      alert("You've either entered a empty box or have entered characters. Enter a zero if you have a empty box.")
+    }
+
     var amuletRedPoints;
     var amuletWhitePoints;
     var amuletBluePoints;
-  
-    // Critical calculations
-    var cc=$.n(/*critchance*/);
-    var ccAm/*Crit chance+ Amulet*/=($.n(/*critchance*/)+$.n(/*Amulet critchance*/));
-    var cp=$.n(/*critpower*/);
-    var cpAm/*Crit power+ Amulet*/=($.n(/*critpower*/)+$.n(/*Amulet critpower*/));
-    var sc=$.n(/*supercritchance*/);
-    var sp=$.n(/*supercritpower*/);
-    var cpi=$.n(/*insert amulet's crit chance here*/);
-    console.log(cc)
-    console.log(cp)
-    console.log(sc)
-    console.log(sp)
-    console.log(cpi)
-    var fc=$.pd(cc,cp)
-    var fs=$.pd(cc,$.pd(sc,((sp/100)*cp)))
-    var fcs=$.pd((cc+1),cp)-fc
-    var fss=$.pd((cc+1),$.pd(sc,((sp/100)*cp)))-fs //i love this line
-    $.st(/*element*/null, /*response*/null);
-    }
-  function calcCompare() {
-  var amuletRedPoints;
-  var amuletWhitePoints;
-  var amuletBluePoints;
   var amuletRedPoints2;
   var amuletWhitePoints2;
   var amuletBluePoints2;
-
-  // Critical calculations
-  var cc=$.n(/*critchance*/);
-  var ccAm/*Crit chance+ Amulet*/=($.n(/*critchance*/)+$.n(/*Amulet critchance*/));
-  var cp=$.n(/*critpower*/);
-  var cpAm/*Crit power+ Amulet*/=($.n(/*critpower*/)+$.n(/*Amulet critpower*/));
-  var sc=$.n(/*supercritchance*/);
-  var sp=$.n(/*supercritpower*/);
-  var cpi=$.n(/*insert amulet's crit chance here*/);
-  console.log(cc)
-  console.log(cp)
-  console.log(sc)
-  console.log(sp)
-  console.log(cpi)
-  var fc=$.pd(cc,cp)
-  var fs=$.pd(cc,$.pd(sc,((sp/100)*cp)))
-  var fcs=$.pd((cc+1),cp)-fc
-  var fss=$.pd((cc+1),$.pd(sc,((sp/100)*cp)))-fs //i love this line
-  $.st(/*element*/null, /*response*/null);
-  }
-
-
-  // end
-  // expected accuracy 100%
-  // estimates tell me it's correct
   
+    // Critical calculations
+    var cc=$.n(critchance1);
+    var ccAm/*Crit chance+ Amulet*/=($.n(critchance1)+$.n(/*Amulet critchance*/));
+    var cp=$.n(/*critpower*/);
+    var cpAm/*Crit power+ Amulet*/=($.n(/*critpower*/)+$.n(/*Amulet critpower*/));
+  //  var sc=$.n(/*supercritchance*/);
+  //  var sp=$.n(/*supercritpower*/);
+    var cpi=$.n(/*insert amulet's crit chance here*/);
+    //console.log(cc)
+    //console.log(cp)
+  //  console.log(sc)
+  //  console.log(sp)
+    //console.log(cpi)
+    var fc=$.pd(cc,cp)
+   // var fs=$.pd(cc,$.pd(sc,((sp/100)*cp)))
+    var fcs=$.pd((cc+1),cp)-fc
+   // var fss=$.pd((cc+1),$.pd(sc,((sp/100)*cp)))-fs //i love this line
+    $.st(/*element*/null, /*response*/null);
+    }
   </script>
   <script src="homepagehandler.js"></script>
 </body>
