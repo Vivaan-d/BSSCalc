@@ -11,20 +11,35 @@
   <input type="text" id="message" placeholder="Send a message...">
   <button onclick="sendMessage()">Send</button>
   <input type="text" id="username" placeholder="Select a username">
+  Upload PFP
+  <input type="file" id="profilePicture" accept="image/*">
+
   <style>
 	#messages {
 		height: 400px;
 		padding:10px;
         overflow-y: scroll;
-		background: white;
-		color:black;
+		background: rgb(36, 36, 36);
+		color:white;
 		width: 100%;
     }
 	#messages>div{
-		border: 1px solid #000000;
+		border: 1px solid white;
 		border-radius: 10px;
 		padding:5px;
 	}
+  #messages>div>img{
+    width:36px;
+    height:36px;
+    position: relative;
+    margin-right: 5px;
+    border-radius: 1000px;
+  }
+  #messages>div>username{
+    bottom:21px;
+    position:relative;
+    font-size:20px;
+  }
   </style>
 
   <script>
@@ -44,22 +59,75 @@
     firebase.initializeApp(firebaseConfig);
 
     var messageInput = document.getElementById("message");
-    var username = document.getElementById("username").value;
+    var username = document.getElementById("username");
     var messagesDiv = document.getElementById("messages");
-	var general = "general"
-	
-    function sendMessage() {
-      var message = messageInput.value;
-      firebase.database().ref("general").push().set({
-        "message": "["+username+"] "message
-      });
-      messageInput.value = "";
+	  var general = "general"
+    if (localStorage.getItem("username") == "VivaanMC"){
+      username.value = "VivaanMC";
     }
+	  username.value = localStorage.getItem("username")
+    var realUsername = false;
+    function sendMessage() {
+		if (username.value == "<>VivaanMC<>"){
+			realUsername = "VivaanMC"
+		  localStorage.setItem("username", "VivaanMC");
+		}
+		if (username.value == "VivaanMC"){
+			username.value = ">>fake<< VivaanMC"
+		}
+    
+ /*                    pfp begin                     */
+  var profilePictureInput = document.getElementById("profilePicture");
+  var profilePictureFile = profilePictureInput.files[0];
+  if (profilePictureFile) {
+  var reader = new FileReader();
+  reader.onload = function(e) {
+  var profilePictureDataURL = e.target.result;
+  /*                   pfp end                       */
+      var message = messageInput.value;
+	  if (username.value.length > 4&&username.value.length < 13 && message.length > 0){
+      
+  	    firebase.database().ref("general").push().set({
+   	     "message": "<img src='" + profilePictureDataURL + "' width=36>" + "<username>"+localStorage.getItem("username")+"</username> " +"<br>" +message
+    	  });
+		}
+        messageInput.value = "";
+		localStorage.setItem("username", username.value);
+    if (profilePictureDataURL){
+	  	localStorage.setItem("profilePictureFile", profilePictureDataURL);
+    } else {
+      alert("missing. pls contact vivaan if this is a mistake")
+    }
+    }
+    reader.readAsDataURL(profilePictureFile);
+  }
+
+
+  else 
+
+
+  {
+    /* mini pfp begin */
+  var profilePictureDataURL = localStorage.getItem("profilePictureFile");
+  /*                  mini pfp end                       */
+      var message = messageInput.value;
+	  if (username.value.length > 4&&username.value.length < 13 && message.length > 0){
+      
+  	    firebase.database().ref("general").push().set({
+   	     "message": "<img src='" + profilePictureDataURL + "' width=36>" + "<username>"+localStorage.getItem("username")+"</username> " +"<br>" +message
+    	  });
+		}
+        messageInput.value = "";
+		localStorage.setItem("username", username.value);
+    }
+    reader.readAsDataURL(profilePictureFile);
+  };
+
 
     firebase.database().ref("general").on("child_added", function(snapshot) {
       var message = snapshot.val();
       var messageDiv = document.createElement("div");
-      messageDiv.textContent = message.message;
+      messageDiv.innerHTML = message.message;
       messagesDiv.appendChild(messageDiv);
     });
   </script>
