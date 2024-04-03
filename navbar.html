@@ -67,16 +67,37 @@
     transition: 0.3s;
     cursor: pointer;
   }
-  .menu>a>p{
-
+  .menu>a>span{
+    color: white;
+    font-size: 19px;
+  }
+  .menu>a>img{
+    top: 10px;
+    margin-right:10px;
+    position:relative;
   }
   
-  .menu a:hover {
+  .menu>a:hover {
     background-color: #2196f3;
     color: #fff!important;
     border: none;
   }
+  .menu>a.blue{
+    color:deepskyblue!important;
+  }
+  .menu>a.purple{
+    color:#4727d6!important;
+  }
+  .menu>a.red{
+    color:rgb(207, 16, 16)!important;
+  }
+  .menu>a.darkblue{
+    color:rgb(0, 0, 146)!important;
+  }
+  .menu>a.lavender{
+    color:rgb(99, 99, 236)!important;
+  }
 </style>
 </header>
 <div class="menusmall" onclick="$.qs('.menu').style.display='block'">Click here to see more calculators!</div>
-<div class="menu"><a>AmuletEC</a><div>bcc</div><div>amulet master</div></div>
+<div class="menu"><a href="." class="blue"><img src="precisetools.png" width="30">Home <span>The homepage</span></a><a href="Amulet Efficiency Calculator"><img src="ssa.png" width="30">AmuletEC</a><a href="Amulet Master" class="red"><img src="ssa.png" width="30">Amulet Master</a><a href="Base Capacity Calculator" class="darkblue"><img src="backpack.png" width="30">Base Capacity Calculator</a><a href="Critical Chance calculator" class="lavender"><img src="precision.png" width="30">Critical Chance Calculator</a></div>
