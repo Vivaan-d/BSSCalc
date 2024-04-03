@@ -8,9 +8,24 @@
 <body>
 
   <div id="messages"></div>
-  <input type="text" id="message">
+  <input type="text" id="message" placeholder="Send a message...">
   <button onclick="sendMessage()">Send</button>
-  
+  <input type="text" id="username" placeholder="Select a username">
+  <style>
+	#messages {
+		height: 400px;
+		padding:10px;
+        overflow-y: scroll;
+		background: white;
+		color:black;
+		width: 100%;
+    }
+	#messages>div{
+		border: 1px solid #000000;
+		border-radius: 10px;
+		padding:5px;
+	}
+  </style>
 
   <script>
     // TODO: Replace the following with your app's Firebase project configuration
@@ -29,17 +44,19 @@
     firebase.initializeApp(firebaseConfig);
 
     var messageInput = document.getElementById("message");
+    var username = document.getElementById("username").value;
     var messagesDiv = document.getElementById("messages");
-
+	var general = "general"
+	
     function sendMessage() {
       var message = messageInput.value;
-      firebase.database().ref("messages").push().set({
-        "message": message
+      firebase.database().ref("general").push().set({
+        "message": "["+username+"] "message
       });
       messageInput.value = "";
     }
 
-    firebase.database().ref("messages").on("child_added", function(snapshot) {
+    firebase.database().ref("general").on("child_added", function(snapshot) {
       var message = snapshot.val();
       var messageDiv = document.createElement("div");
       messageDiv.textContent = message.message;
