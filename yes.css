@@ -15,6 +15,11 @@
     line-height: 1.5;
     color: #333;
     background-image: url("bssmap.png");
+    background-repeat: repeat-y;
+    background-size: 100%;
+    color:white;
+    background-blend-mode:difference;
+    stroke: #333!important;
   }
 
   .dark-mode {
@@ -93,6 +98,10 @@
   /* Style the paragraphs */
   p {
     margin-bottom: 10px;
+    transition: linear;
+  }
+  p:hover,h1:hover,h2:hover,h3:hover,h4:hover,h5:hover,h6:hover,.logo:hover{
+    background-color: rgba(6, 102, 102, 0.466);
   }
   
   /* Style the lists */
