@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+</head>
+<body>
+  <div id="messages"></div>
+  <input type="text" id="message">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    // TODO: Replace the following with your app's Firebase project configuration
+	const firebaseConfig = {
+  apiKey: "AIzaSyDBAVHLtzXcBno-aW5JXt29C2qwLDPvuuY",
+  authDomain: "precisetools-chat.firebaseapp.com",
+  databaseURL: "https://precisetools-chat-default-rtdb.firebaseio.com",
+  projectId: "precisetools-chat",
+  storageBucket: "precisetools-chat.appspot.com",
+  messagingSenderId: "985465586999",
+  appId: "1:985465586999:web:51fc8054469cb5951d46b2",
+  measurementId: "G-MWZ3RK7Q1L"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var messageInput = document.getElementById("message");
+    var messagesDiv = document.getElementById("messages");
+
+    function sendMessage() {
+      var message = messageInput.value;
+      firebase.database().ref("messages").push().set({
+        "message": message
+      });
+      messageInput.value = "";
+    }
+
+    firebase.database().ref("messages").on("child_added", function(snapshot) {
+      var message = snapshot.val();
+      var messageDiv = document.createElement("div");
+      messageDiv.textContent = message.message;
+      messagesDiv.appendChild(messageDiv);
+    });
+  </script>
+</body>
+</html>
