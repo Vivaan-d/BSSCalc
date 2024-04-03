@@ -100,14 +100,27 @@
     margin-bottom: 10px;
     transition: linear;
   }
-  p:hover,h1:hover,h2:hover,h3:hover,h4:hover,h5:hover,h6:hover,.logo:hover{
-    background-color: rgba(6, 102, 102, 0.466);
+  p:hover,h1:hover,h2:hover,h3:hover,h4:hover,h5:hover,h6:hover{
+    background-color: rgba(102, 6, 6, 0.466);
+  }
+  header>header {
+    background-color: rgba(255, 255, 255, 0.405);
+    padding: 30px;
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    backdrop-filter: blur(6px);
   }
   
   /* Style the lists */
   ul, ol {
     margin-left: 20px;
     margin-bottom: 10px;
+  }
+
+  h1{
+    margin-top: 150px;
   }
   
   /* Style the table */
